@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio Teléfonico INN</title>
+    <link rel="stylesheet">
+    
+<style type="text/css">
+    body{
+        font-family: sans-serif;
+        background-color: #fff;
+    }
+    h1{
+        text-align: center;
+        text-shadow: 2px 2px 2px #4CAF50;
+        transition: 0.5s;
+    }
+    #tablaRegistros{
+        width: 80%;
+        border-collapse: collapse;
+        margin: auto;
+    }
+    #tablaRegistros th{
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+    #tablaRegistros th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+    #miCampo{
+        width: 20%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #btn{
+        width: 10%;
+        padding: 5px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.5s;
+    }
+    #btn:hover{
+        background-color: #45a049;
+    }
+    #btnDownload{
+        padding: 10px 20px;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: 0.5s;
+
+    }
+    #btnDownload:hover{
+        background-color: #45a049;
+    }
+    a{
+        text-decoration: none;
+        font-size: 14px;
+    }
+        @media (max-width: 500px){
+            .cinta{
+                width: 100%;
+                transition: 0.5s;
+            }
+            .logo{
+                width: 40%;
+                transition: 0.5s;
+            }
+
+        @media (max-width: 500px){
+            #miCampo{
+                width: 40%;
+                transition: 0.5s;
+            }
+            #btn{
+                width: 40%;
+                transition: 0.5s;
+            }
+            a{
+                display: block;
+                width: 35%;
+                transition: 0.5s;
+        }
+    }
+</style>
+
+</head>
+    <body>
+        <center>
+            <img class="cinta" src="img/cintillo.jpg" width="75%">
+                <h1>Directorio Teléfonico (INN)</h1>
+                    <center>
+                        <img class="logo" src="img/inn.png" width="10%;">
+                    </center>
+    <div class="conten">        
+            <input class="datos" type="text" id="miCampo" placeholder="Buscar por Nombre, Apellido, Dirección y Estención">
+            <button class="btnaction" id="btn" onclick="validarCampo()" onclick="filtrarRegistros()">BUSCAR</button>
+            <a id="btnDownload" href="DirectorioTelefonicoINN.pdf" download="nDirectorioTelefonicoINN.pdf">Descargar PDF</a>  
+        </center>
+    </div>
+
+        <br><br>
+
+            <table id="tablaRegistros">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE Y APELLIDO</th>
+                        <th>DIRECCIONES</th>
+                        <th>OFICINA</th>
+                        <th>EXTENSIONES</th>
+                    </tr>
+                </thead>
+                    <tbody>
+
+                    </tbody>
+            </table>
+
+
+  <script type="text/javascript">
+    function validarCampo() {
+    const campo = document.getElementById('miCampo');
+    const valor = campo.value.trim();
+
+  if (valor === '') {
+    alert('El CAMPO ESTA VACIO!! Ingrese un Nombre, Apellido, Dirección o Exteción');
+  } else {
+    // Aquí puedes procesar el valor del campo
+    const registros = [
+    { id: 1, nombre: "LIC. YELITZA GONZÁLEZ ", apellido: "DIR. EJECUTIVA",camponew: "Directora de despacho", email: "298" },
+    { id: 2, nombre: "GABRIELA LOPEZ ", apellido: "DIR. EJECUTIVA",camponew: "Asistente de Presidencia", email: "354" },
+    { id: 3, nombre: "GLADYS CARPIO ", apellido: "DIR. EJECUTIVA",camponew: "Despacho", email: "353" },
+    { id: 4, nombre: "MAYKELYS TORRES ", apellido: "ADMINISTRACIÓN",camponew: "Tesorería", email: "400" },
+    { id: 5, nombre: "RECEPCIÓN ", apellido: "PROTOCOLO",camponew: "Recepción/loby", email: "100" },
+    { id: 6, nombre: "ADRIÁN ACOSTA ", apellido: "DIR. EJECUTIVA",camponew: "Transporte", email: "109" },
+    { id: 7, nombre: "CLARET RODRÍGUEZ ", apellido: "AUDITORÍA INTERNA",camponew: "Directora", email: "114" },
+    { id: 8, nombre: "GLORIA QUINTERO ", apellido: "ADMINISTRACIÓN",camponew: "Recepciones", email: "115" },
+    { id: 9, nombre: "MIGUEL MACHADO ", apellido: "TRANSPORTE",camponew: "Transporte", email: "117" },
+    { id: 10, nombre: "DEIVYS MENDEZ ", apellido: "RRHH",camponew: "Recepción", email: "173" },
+    { id: 11, nombre: "ELY FERNÁNDEZ ", apellido: "ATENCIÓN AL CIUDADANO",camponew: "Director", email: "202" },
+    { id: 13, nombre: "CRISTIAN ARIAS ", apellido: "OSTI",camponew: "Director", email: "200" },
+    { id: 14, nombre: "ELY FERNANDEZ ", apellido: "DIR. ATENCIÓN AL CIUDADANO ",camponew: "Atenciòn al Ciudadano", email: "202" },
+    { id: 15, nombre: "VLADIMIR TORRES ", apellido: "PLANIFICACIÓN Y PRESUPUESTO",camponew: "Presupuesto", email: "203" },
+    { id: 16, nombre: "COLMENARES ", apellido: "DIR. EJECUTIVA",camponew: "RECEPCIÓN", email: "204" },
+    { id: 17, nombre: "COLMENARES ", apellido: "RRHH",camponew: "Talento Humano", email: "204" },
+    { id: 18, nombre: "GREGORIO GONZALEZ ", apellido: "RRHH",camponew: "Recursos Humanos", email: "211" },
+    { id: 19, nombre: "MIGUEL BARRETO ", apellido: "GESTIÓN SOCIALISTA",camponew: "Director", email: "214" },
+    { id: 20, nombre: "LUA BERNAL ", apellido: "OCRI",camponew: "Directora", email: "215" },
+    { id: 21, nombre: "DEIVYS BRACAMONTE ", apellido: "OSTI",camponew: "Soporte Técnico", email: "216" },
+    { id: 22, nombre: "JACKLYN ROJAS ", apellido: "EDUCACIÓN",camponew: "Directora", email: "220" },
+    { id: 23, nombre: "MABEL VILLAFRANCA ", apellido: "GERENCIA DE INVESTIGACIÓN EN ALIMENTOS", camponew: "Gerente", email: "222" },
+    { id: 24, nombre: "EVER GUTIÉRREZ ", apellido: "DEAN",camponew: "Director", email: "224" },
+    { id: 25, nombre: "YOLANDA AREVALO ", apellido: "ALMACÉN CENTRAL",camponew: "Almacén Central", email: "234" },
+    { id: 26, nombre: "JOSEFINA GUAITA ", apellido: "CONSULTORIA JURÍDICA",camponew: "Directora", email: "235" },
+    { id: 27, nombre: "YESSIKA CLEMENTE ", apellido: "OSTI",camponew: "ADJUNTA", email: "274" },
+    { id: 28, nombre: "SERVICIO MÉDICO ", apellido: "RRHH",camponew: "Recepción", email: "279" },
+    { id: 29, nombre: "DORIS QUIÑONEZ ", apellido: "ADMINISTRACIÓN",camponew: "ADJUNTA", email: "281" },
+    { id: 30, nombre: "GREGORY GUZMÁN", apellido: "RRHH",camponew: "Ingreso de Personal", email: "287" },
+    { id: 31, nombre: "CECILIO CARABALLO ", apellido: "GERENCIA DE INVESTIGACIÓN EN ALIMENTOS",camponew: "Laboratorio Sensorial", email: "297" },
+    { id: 32, nombre: "EDMIR NAVARRO ", apellido: "UNIDAD DE CARACAS",camponew: "Directora", email: "300" },
+    { id: 33, nombre: "IYASMEL CARBALLO ", apellido: "GERENCIA DE INVESTIGACIÓN EN ALIMENTOS",camponew: "Recepción", email: "301" },
+    { id: 34, nombre: "ELIZABETH PACHECO ", apellido: "PROTOCOLO",camponew: "Protocolo", email: "305" },
+    { id: 35, nombre: "JACKLYN ROJAS ", apellido: "ESTUDIO NUTRICIONALES",camponew: "Directora", email: "307" },
+    { id: 36, nombre: "GRISEL PULIDO ", apellido: "DIR. ASESORIA LEGAL",camponew: "Asesoria Legal", email: "308" },
+    { id: 37, nombre: "JOSÉ HINOJOSA ", apellido: "CCAN",camponew: "CCAN", email: "310" },
+    { id: 38, nombre: "NATASHA CARVAJAL ", apellido: "PLANIFICACIÓN Y PRESUPUESTO",camponew: "Planificación y Presupuesto", email: "311" },
+    { id: 39, nombre: "CAROLINA HERNANDEZ ", apellido: "ADMINISTRACIÓN ",camponew: "Control Bancario", email: "323" },
+    { id: 40, nombre: "AISA AGUIRRE ", apellido: "DEAN",camponew: "Dean", email: "324" },
+    { id: 41, nombre: "BELÉN NAVARRO ", apellido: "ARTICULACION CON EL PODER POPULAR",camponew: "Directora", email: "325" },
+    { id: 42, nombre: "RAQUEL PEÑA ", apellido: "RRHH",camponew: "Sala Maternal", email: "330" },
+    { id: 43, nombre: "RECEPCIÓN DEAN ", apellido: "DEAN",camponew: "DEAN", email: "333" },
+    { id: 44, nombre: "PLANIFICACIÓN Y PRESUPUESTO ", apellido: "PLANIFICACIÓN Y PRESUPUESTO ",camponew: "Planificación y Presupuesto", email: "335" },
+    { id: 45, nombre: "MARCIA BELISARIO ", apellido: "RRHH",camponew: "Asesoría Legal", email: "338" },
+    { id: 46, nombre: "WUILMER HERNÁNDEZ ", apellido: "ASESORÍA LEGAL",camponew: "Asesoría Legal", email: "308" },
+    { id: 47, nombre: "MARSELLA MASTROLINARDO ", apellido: "SERVICIO GENERALES",camponew: "Directora", email: "339" },
+    { id: 48, nombre: "THERRY CARRASQUEL ", apellido: "PROCURA",camponew: "Comedor Sede", email: "340" },
+    { id: 49, nombre: "DENIS MOLINA ", apellido: "NORMATIVA Y CALIDAD",camponew: "Directora", email: "343" },
+    { id: 50, nombre: "IVONNE KEY ", apellido: "OCRI",camponew: "Recepción", email: "346" },
+    { id: 51, nombre: "MINERVA ROJAS ", apellido: "INGRESOS PROPIOS",camponew: "Administradora", email: "347" },
+    { id: 52, nombre: "AQUILES MORENO ", apellido: "ADMINISTRACIÓN",camponew: "Director", email: "348" },
+    { id: 53, nombre: "KATHERINE ZAMORA ", apellido: "RRHH",camponew: "Bienestar Social", email: "351" },
+    { id: 54, nombre: "MIGUEL MACHADO ", apellido: "SEGURIDAD INTEGRAL",camponew: "Director", email: "359" },
+    { id: 55, nombre: "PATRICIA MARTÍNEZ ", apellido: "DIR. NAC. DE COMEDORES",camponew: "Directora", email: "360" },
+    { id: 56, nombre: "MARIA HERRERA ", apellido: "SEGURIDAD INTEGRAL",camponew: "Recepción", email: "361" },
+    { id: 57, nombre: "GAUDRYS CUTIÑO ", apellido: "RRHH",camponew: "Servicio Médico", email: "370" },
+
+    // ... agregar más registros
+];
+            const miCampo = document.getElementById("miCampo").value.toLowerCase();
+            const tablaRegistros = document.getElementById("tablaRegistros");
+            const tbody = tablaRegistros.querySelector("tbody");
+        tbody.innerHTML = ""; // Borrar registros existentes
+
+        // Filtrar registros
+            const registrosFiltrados = registros.filter(registro => {
+            const nombre = registro.nombre.toLowerCase();
+            const apellido = registro.apellido.toLowerCase();
+            const camponew = registro.apellido.toLowerCase();
+            const email = registro.email.toLowerCase();
+            return (
+                nombre.includes(miCampo) ||
+                apellido.includes(miCampo) ||
+                camponew.includes(miCampo) ||
+                email.includes(miCampo)
+            );
+        });
+
+        // Mostrar registros filtrados
+        registrosFiltrados.forEach(registro => {
+            const fila = document.createElement("tr");
+            const celdaId = document.createElement("td");
+            const celdaNombre = document.createElement("td");
+            const celdaApellido = document.createElement("td");
+            const celdaCamponew = document.createElement("td");
+            const celdaEmail = document.createElement("td");
+
+            celdaId.textContent = registro.id;
+            celdaNombre.textContent = registro.nombre;
+            celdaApellido.textContent = registro.apellido;
+            celdaCamponew.textContent = registro.camponew;
+            celdaEmail.textContent = registro.email;
+
+            fila.appendChild(celdaId);
+            fila.appendChild(celdaNombre);
+            fila.appendChild(celdaApellido);
+            fila.appendChild(celdaCamponew);
+            fila.appendChild(celdaEmail);
+
+            tbody.appendChild(fila);
+        });
+    }
+}
+
+</script>
+
+</body>
+</html>
+
